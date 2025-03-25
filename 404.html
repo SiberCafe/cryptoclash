@@ -9,7 +9,7 @@
             const path = window.location.pathname;
             const search = window.location.search;
             const hash = window.location.hash;
-            const newUrl = `/index.html#${path}${search}${hash}`;
+            const newUrl = `/#${path}${search}${hash}`;
             
             // Avoid redirect loop by ensuring the URL isn't already in hash mode
             if (!path.includes('404') && !window.location.href.includes("#/")) {
