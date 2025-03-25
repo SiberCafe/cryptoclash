@@ -2,27 +2,30 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import ParticlesComponent from '../../components/main/particle';
+import user_data from "./utils";
 
 const RegisterPage = () => {
   const [registrationNumber, setRegistrationNumber] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // 🚀 Navigation hook
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Registration Number:", registrationNumber);
-    console.log("Username:", username);
-    console.log("Email:", email);
-    console.log("Password:", password);
-    alert("Registration Successful!");
+    var register = await user_data.SignUp(username,registrationNumber,email,password)
+    if (register.success) {
+      alert("Register successfull")
+      window.location.href =  "/dashboard";
+    } else {
+      alert("Register failed")
+    }
   };
 
   useEffect(() => {
     document.body.style.margin = "0";
     document.body.style.padding = "0";
-    document.body.style.overflow = "hidden"; // Prevents scrolling on the background
+    document.body.style.overflow = "hidden";
   }, []);
 
   return (

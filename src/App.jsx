@@ -12,8 +12,7 @@ import CheckAuth from "./components/auth/check-auth";
 import "./App.css";
 
 function App() {
-  // 🔥 State to manage authentication
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem("token") !== null);
   const [user, setUser] = useState(null);
 
   return (

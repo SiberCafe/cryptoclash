@@ -2,17 +2,22 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import ParticlesComponent from '../../components/main/particle';
+import user_data from "./utils";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // 🚀 Navigation hook
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Username:", username);
-    console.log("Password:", password);
-    alert("Login Successful!");
+    var login = await user_data.Login(username,password);
+    if (login.success) {
+      alert("Logged successfully")
+      window.location.href = "/dashboard";
+    } else {
+      alert("Login failed")
+    }
   };
 
   useEffect(() => {
